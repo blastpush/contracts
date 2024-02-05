@@ -1,7 +1,7 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const contract = await ethers.deployContract("PushStorage");
+  const contract = await ethers.deployContract("PushStorage", [], {});
 
   await contract.waitForDeployment();
 
