@@ -2,10 +2,20 @@
 
 pragma solidity >=0.8.2 <0.9.0;
 
-contract PushStorage {
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "./interfaces/IBlast.sol";
+
+contract PushStorage is Ownable {
+    IBlast public constant BLAST =
+        IBlast(0x4300000000000000000000000000000000000002);
+
     mapping(address => Push) public pushes;
 
     event Created(Push);
+
+    constructor() Ownable(msg.sender) {
+        BLAST.configureClaimableGas();
+    }
 
     struct Push {
         address from;
@@ -26,5 +36,9 @@ contract PushStorage {
     ) public {
         pushes[_address] = Push(msg.sender, _from, _to, data);
         emit Created(pushes[_address]);
+    }
+
+    function claimContractGas() external onlyOwner {
+        BLAST.claimAllGas(address(this), msg.sender);
     }
 }
