@@ -3,3 +3,6 @@ create-wallet:
 
 deploy-storage:
 	npx hardhat run scripts/deploy-storage.ts --network blast_sepolia
+
+deploy-storage-mainnet:
+	npx hardhat run scripts/deploy-storage.ts --network blast

@@ -23,11 +23,20 @@ const config: HardhatUserConfig = {
           browserURL: "https://testnet.blastscan.io",
         },
       },
+      {
+        network: "blast",
+        chainId: 81457,
+        urls: {
+          apiURL:
+            "https://api.routescan.io/v2/network/testnet/evm/168587773/etherscan",
+          browserURL: "https://blastscan.io",
+        },
+      },
     ],
   },
   networks: {
     blast_mainnet: {
-      url: "coming end of February",
+      url: "https://rpc.blast.io",
       accounts: [process.env.PRIVATE_KEY as string],
       gasPrice: 1000000000,
     },
@@ -44,7 +53,6 @@ const config: HardhatUserConfig = {
       gasPrice: 1000000000,
     },
   },
-  defaultNetwork: "blast_sepolia",
   sourcify: {
     enabled: true,
   },
